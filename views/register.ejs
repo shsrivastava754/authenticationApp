@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Signup</title>
+</head>
+<body>
+    <h1>New User</h1>
+
+    <form class="registerForm" action="/register" method="post">
+        <div class="mainForm">
+            <input type="email" placeholder="Enter your email" name="email" id="email" onkeyup="checkForm()">
+            <input type="text" placeholder="Enter username" name="username" class="username" id="username" onkeyup="checkForm()">
+            <input type="password" placeholder="Enter Password" name="password" id="password" onkeyup="checkForm()">
+            <span class="fa-sharp fa-solid fa-eye toggle" id="toggle" onclick="handleToggle()"></span>
+
+            <button type="submit" class="submitBtn" id="submitBtn" disabled>Register</button>
+
+            <p>Already have an account? <a href="/loginUser">Login Here</a></p>
+        </div>
+    </form>
+
+    <script>
+        const checkForm = (e)=>{
+            const btn = document.getElementById('submitBtn');
+            btn.setAttribute('disabled','');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value
+
+            if((username.length)&&(email.length)&&(password.length)){
+                btn.removeAttribute('disabled');
+            }
+        };
+
+        const handleToggle = ()=> {
+            let pass = document.getElementById("password");
+            let toggleBtn = document.getElementById("toggle");
+            let currentType = pass.getAttribute("type");
+        
+            if (currentType === "password") {
+            pass.setAttribute("type", "text");
+            toggleBtn.setAttribute("class", "fa-solid fa-eye-slash");
+        
+            } else {
+            pass.setAttribute("type", "password");
+            toggleBtn.setAttribute("class", "fa-sharp fa-solid fa-eye toggle");
+            }
+        };
+    </script>
+    <script src="https://kit.fontawesome.com/63bbcc9489.js" crossorigin="anonymous"></script>
+</body>
+</html>
