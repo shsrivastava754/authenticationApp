@@ -1,0 +1,58 @@
+.bg-image{
+    background: #000000;
+    height: 90vh;
+}
+
+.taskForm {
+  margin-top: 3rem;
+  box-sizing: border-box;
+  padding: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 30rem;
+  border-radius: 10px;
+  width:70%;
+  margin: auto;
+  background-color: #617c7e;
+}
+
+.taskForm input,textarea{
+    color: #0ff6eb;
+    font-weight: 500;
+    resize: none;
+    display: block;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(164, 194, 214);
+    font-size: 1.4rem;
+    padding: 5px;
+    width: 80%;
+    margin: auto;
+    background: #617c7e;
+}
+
+::placeholder {
+    color: rgb(211, 222, 226);
+}
+
+input[type="date"]{
+    color: rgb(211, 222, 226);
+}
+
+.submitBtn{
+    padding: 10px;
+    margin-left: 35%;
+    margin-top: 50px;
+    width: 30%;
+    background-color: #0ff6eb;
+    color: #000000;
+    font-weight: 700;
+}
+
+.submitBtn:hover{
+    background-color: #617c7e;
+    color: rgb(211, 222, 226);
+    cursor: pointer;
+    outline: none;
+    border: 1px solid rgb(211, 222, 226);
+}

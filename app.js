@@ -3,7 +3,9 @@ const app = express();
 const port = 3000;
 const ejs = require('ejs');
 const path = require('path');
+const connection = require('./database/connection');
 const users = require('./database/users');
+const tasks = require('./database/tasks');
 
 const expressSession = require('express-session');
 
@@ -38,7 +40,16 @@ app.get('/registerUser',(req,res)=>{
 
 app.get('/profile',protectProfile,(req,res)=>{
   res.render("profile",{name:req.user.username});
-})
+});
+
+app.get('/logout',(req,res)=>{
+  req.logout((err)=>{
+    if(err){
+      return next(err);
+    }
+    res.redirect('/')
+  });
+});
 
 app.post('/login',passport.authenticate("local",{failureRedirect:'/loginUser',successRedirect:'/profile'}));
 
@@ -52,14 +63,15 @@ app.post('/register',async (req,res)=>{
   res.redirect('/loginUser');
 });
 
-app.get('/logout',(req,res)=>{
-  req.logout((err)=>{
-    if(err){
-      return next(err);
-    }
-    res.redirect('/')
-  });
-})
+app.post('/addTask',async (req,res)=>{
+  const task = await users.findOne({title:req.body.title});
+  if(task){
+    return res.status(400).send("Task already exists!!");
+  }
+
+  const newTask = await tasks.create(req.body);
+  res.redirect('/profile');
+});
 
 app.listen('3000',()=>{
   console.log("Hello");
